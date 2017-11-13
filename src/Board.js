@@ -22,6 +22,7 @@ class Board extends Component{
   }
 
   setTimer = interval => {this.timer = window.setInterval(this.checkCells, interval); };
+  removeTimer = _ => {window.clearInterval(this.timer)};
 
   removeCells = _ => {
     select("#wrapper")
@@ -66,9 +67,9 @@ class Board extends Component{
 
     let newArr = oldCells.map((e,i) => newCells.includes(i) ?
       +this.liveOrDie(e,i,oldCells) : e );
-
+    this.props.newGeneration();
     this.setState({arr: newArr});
-    this.generation += 1;
+
 
   }
 
