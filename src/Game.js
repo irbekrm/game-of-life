@@ -9,9 +9,8 @@ class Game extends Component {
 
   render(){
     let c = cellGenerator();
-    console.log(`c is ${c}`);
     return (
-      <Board liveCells={c} />
+      <Board liveCells={[80,81,82]} />
     )
   }
 };

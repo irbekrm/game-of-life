@@ -10,6 +10,7 @@ class Board extends Component{
   };
 
   componentDidMount(){
+    this.mounted = true;
     this.generate();
   }
   generate = _ => {
@@ -19,12 +20,13 @@ class Board extends Component{
       .selectAll("div")
       .data(this.state.arr)
       .enter().append("div")
-      .style("background-color", d => d ? "blue" : "green");
+      .style("background-color", d => d ? "blue" : "green")
+      .on("click", function(_,i){self.setState(prevState => ({arr: prevState.arr[i] = 1 && prevState.arr}))});
     };
 
   checkIfWithinRange = x => x >= 0 && x < 4000;
 
-  getNeighbours = (i) => {
+  getNeighbours = i => {
     let arr = [];
     [1,-1,80,-80,79,-79,81,-81].forEach(e => {
       this.checkIfWithinRange(e + i) && arr.push(i + e);
@@ -39,23 +41,24 @@ class Board extends Component{
     let livesAround = this.countLivesAround(neighbours,arr);
 
     return (
-    e ? livesAround == 2 || livesAround == 3 :
+    e ? (livesAround == 2 || livesAround == 3) :
     livesAround == 3 );
   }
 
   checkCells = _ => {
-    let oldCells = this.state.array.slice(0);
-    let liveCells = oldCells.filter((e,i) => e);
+    let oldCells = this.state.arr.slice(0);
+    let liveCells = oldCells.map((e,i) => [e,i]).filter(x=>x[0]==1).map(y=>y[1]);
     let newCells = liveCells.concat(...liveCells.map(i => this.getNeighbours(i)));
 
     let newArr = oldCells.map((e,i) => newCells.includes(i) ?
-      this.liveOrDie(e,i,oldCells) : e );
-
+      +this.liveOrDie(e,i,oldCells) : e );
+      
     this.setState({arr: newArr});
 
   }
 
     render(){
+      this.mounted && this.checkCells();
       return(
         <div id="wrapper">
         </div>
