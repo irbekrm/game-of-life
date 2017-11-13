@@ -12,6 +12,21 @@ class Board extends Component{
   componentDidMount(){
     this.mounted = true;
     this.generate();
+    this.setTimer(1000);
+    this.generation = 0;
+  }
+
+  componentDidUpdate() {
+    this.removeCells();
+    this.generate();
+  }
+
+  setTimer = interval => {this.timer = window.setInterval(this.checkCells, interval); };
+
+  removeCells = _ => {
+    select("#wrapper")
+      .selectAll("div")
+        .remove()
   }
   generate = _ => {
     let self = this;
@@ -21,7 +36,6 @@ class Board extends Component{
       .data(this.state.arr)
       .enter().append("div")
       .style("background-color", d => d ? "blue" : "green")
-      .on("click", function(_,i){self.setState(prevState => ({arr: prevState.arr[i] = 1 && prevState.arr}))});
     };
 
   checkIfWithinRange = x => x >= 0 && x < 4000;
@@ -52,13 +66,13 @@ class Board extends Component{
 
     let newArr = oldCells.map((e,i) => newCells.includes(i) ?
       +this.liveOrDie(e,i,oldCells) : e );
-      
+
     this.setState({arr: newArr});
+    this.generation += 1;
 
   }
 
     render(){
-      this.mounted && this.checkCells();
       return(
         <div id="wrapper">
         </div>
