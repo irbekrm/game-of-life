@@ -8,7 +8,6 @@ class Board extends Component{
       arr: Array.from({length: 4000}, (_, i) => +this.props.liveCells.includes(i))
     };
   };
-
   componentDidMount(){
     this.generate();
     this.setTimer(1000);
@@ -20,7 +19,19 @@ class Board extends Component{
   }
 
   setTimer = interval => this.timer = window.setInterval(this.checkCells, interval);
+
   removeTimer = _ => window.clearInterval(this.timer);
+
+  clear = _ => {
+    this.removeTimer();
+    this.setState({arr: Array.from({length: 4000}, _ => 0)});
+  }
+  reset = (newCells,interval) => {
+    this.removeTimer();
+    this.setState({arr: Array.from({length: 4000}, (_,i) => newCells.includes(i))});
+    this.setTimer(interval);
+
+  }
 
   removeCells = _ => {
     select("#wrapper")
