@@ -36,7 +36,8 @@ class Board extends Component{
       .selectAll("div")
       .data(this.state.arr)
       .enter().append("div")
-      .style("background-color", d => d ? "blue" : "green")
+      .style("background-color",
+        d => d == 1 ? "rgb(51, 153, 255)" : d == 2 ? "rgb(0, 64, 128)" : "rgb(0,26,0)")
     };
 
   checkIfWithinRange = x => x >= 0 && x < 4000;
@@ -49,15 +50,14 @@ class Board extends Component{
     return arr;
   };
   countLivesAround = (surroundingCells, arr) =>
-    surroundingCells.reduce((a,b) => a + arr[b],0);
+    surroundingCells.reduce((a,b) => a + (arr[b] ? 1 : 0),0);
 
   liveOrDie = (e, i, arr) => {
     let neighbours = this.getNeighbours(i);
     let livesAround = this.countLivesAround(neighbours,arr);
 
     return (
-    e ? (livesAround == 2 || livesAround == 3) :
-    livesAround == 3 );
+    e && (livesAround == 2 || livesAround == 3) ? 2 : +(livesAround == 3) );
   }
 
   checkCells = _ => {
@@ -66,7 +66,7 @@ class Board extends Component{
     let newCells = liveCells.concat(...liveCells.map(i => this.getNeighbours(i)));
 
     let newArr = oldCells.map((e,i) => newCells.includes(i) ?
-      +this.liveOrDie(e,i,oldCells) : e );
+      this.liveOrDie(e,i,oldCells) : e );
     this.props.newGeneration();
     this.setState({arr: newArr});
 
