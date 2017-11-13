@@ -1,0 +1,8 @@
+* {
+  border: 1px solid black;
+}
+#wrapper{
+  display: grid;
+  grid-template-columns: repeat(80, 10px);
+  grid-template-rows: repeat(50, 10px);
+}
