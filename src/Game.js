@@ -10,14 +10,16 @@ class Game extends Component {
     this.state = {generation: 0, pause: false}
   };
 
-
+  componentDidMount(){
+    this.speed = 1000;
+  }
   stop = _ => {
     this.refs.board.removeTimer();
     this.setState({pause: true});
   }
 
   start = _ => {
-    this.refs.board.setTimer(100);
+    this.refs.board.setTimer(this.speed);
     this.setState({pause: false});
   }
 
@@ -33,7 +35,12 @@ class Game extends Component {
   reset = _ => {
     this.setState({generation: 0});
 
-    this.refs.board.reset(cellGenerator(),100);
+    this.refs.board.reset(cellGenerator());
+  }
+
+  changeSpeed = newSpeed => {
+    this.speed = newSpeed;
+    this.refs.board.resetSpeed(newSpeed);
   }
 
   render(){
@@ -45,6 +52,11 @@ class Game extends Component {
         <Button onClick={this.clear} text="clear" />
         <Button onClick={this.reset} text="reset" />
         <Display generation={this.state.generation} />
+        <div id="speed">
+          <Button onClick={()=>this.changeSpeed(1000)} text="slow" />
+          <Button onClick={()=>this.changeSpeed(500)} text="medium" />
+          <Button onClick={()=>this.changeSpeed(100)} text="fast" />
+        </div>
       </div>
     )
   }

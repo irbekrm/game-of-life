@@ -22,6 +22,10 @@ class Board extends Component{
 
   removeTimer = _ => window.clearInterval(this.timer);
 
+  resetSpeed = interval => {
+    this.removeTimer();
+    this.setTimer(interval);
+  }
   clear = _ => {
     this.removeTimer();
     this.setState({arr: Array.from({length: 4000}, _ => 0)});
@@ -29,7 +33,7 @@ class Board extends Component{
   reset = (newCells,interval) => {
     this.removeTimer();
     this.setState({arr: Array.from({length: 4000}, (_,i) => newCells.includes(i))});
-    this.setTimer(interval);
+    this.setTimer(1000);
 
   }
 
