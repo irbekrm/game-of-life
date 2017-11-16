@@ -49,6 +49,7 @@ class Game extends Component {
   render(){
     return (
       <div id="container">
+        <div id="top">
         <div id="header">game of life</div>
         <div id="controls">
         <div id="innerControls">
@@ -56,6 +57,7 @@ class Game extends Component {
           text={this.state.pause?"start":"pause"} />
           <Button onClick={this.clear} text="clear" />
           <Button onClick={this.reset} text="reset" />
+        </div>
         </div>
         </div>
         <div id="middle">

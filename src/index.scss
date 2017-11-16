@@ -13,7 +13,7 @@ $cellSize: $width / 150;
   width: $width;
   height: $height;
   display: grid;
-  grid-template-rows: 6% 10% 8% 60% 5% 11%;
+  grid-template-rows: 6% 18% 60% 5% 11%;
   grid-template-columns: 5% 90% 5%;
   color: $green;
   font-size: $width / 80;
@@ -61,13 +61,18 @@ $cellSize: $width / 150;
   align-items: center;
 }
 #header {
+  font-size: $width / 30;
+  grid-row-start: 1;
+  grid-column-start: 2;
   display: flex;
   justify-content: center;
-  grid-column-start: 2;
-  grid-column-end: 3;
+}
+#top {
   grid-row-start: 2;
-  grid-row-end: 3;
-  font-size: $width / 35;
+  grid-column-start: 2;
+  display: grid;
+  grid-template-columns: 10% 45% 30% 15%;
+  grid-template-rows: 50% 50%;
 }
 .buttons {
   display: flex;
@@ -91,30 +96,26 @@ $cellSize: $width / 150;
   }
 }
 #controls{
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
   display: grid;
-  grid-template-columns: 25% 55% 15%;
-  grid-template-rows: 15% 70% 15%;
+  grid-template-rows: 25% 65% 10%;
 }
 #innerControls {
   @extend .buttons;
-  grid-column-start: 2;
-  grid-column-end: 3;
   grid-row-start: 2;
   display: flex;
 }
 #middle {
-  grid-row-start: 4;
-  grid-row-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
   grid-column-start: 2;
   grid-column-end: 3;
 }
 #generation {
-  grid-row-start: 5;
-  grid-row-end: 6;
+  grid-row-start: 4;
+  grid-row-end: 5;
   grid-column-start: 2;
   grid-column-end: 3;
   display: grid;
