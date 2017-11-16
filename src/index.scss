@@ -1,0 +1,94 @@
+$width: 100vw;
+$height: 100vh;
+$green: rgb(0, 26, 0);
+$blue: rgb(0,0,102);
+$cellSize: $width / 150;
+
+
+.border {
+  border: 1px solid darken($green, 10%);
+}
+#container{
+  width: $width;
+  height: $height;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  color: $green;
+  font-size: $width / 80;
+}
+#wrapper{
+  display: grid;
+  grid-template-columns: repeat(80, $cellSize);
+  grid-template-rows: repeat(50, $cellSize);
+    div {
+      @extend .border;
+    }
+}
+#middle {
+  display: flex;
+}
+
+.oldCell {
+  background-color: $blue;
+}
+.newCell {
+  background-color: lighten($blue, 35%);
+}
+.deadCell {
+  background-color: $green;
+}
+.exampleCell {
+  width: $cellSize;
+  height: $cellSize;
+  @extend .border;
+}
+#old {
+  @extend .oldCell;
+  @extend .exampleCell;
+}
+#new {
+  @extend .newCell;
+  @extend .exampleCell;
+}
+#dead {
+  @extend .deadCell;
+  @extend .exampleCell;
+}
+#example {
+  display: flex;
+  align-items: center;
+}
+#header {
+  font-size: $width / 35;
+}
+.buttons {
+  width: $width / 150 * 80;
+  display: flex;
+  justify-content: space-between;
+  div {
+    @extend .border;
+    border-radius: $width/100;
+    padding: $width/120;
+    cursor: pointer;
+  }
+}
+#controls{
+  @extend .buttons;
+}
+#middle {
+  display: grid;
+  grid-template-columns: 4% 23% 55% 10% 5%;
+  grid-template-rows: 1;
+  border: 1px solid red;
+}
+#left {
+  grid-column-start: 2;
+  border: 1px solid red;
+  font-size: $width / 90;
+}
+#speed {
+  grid-column-start: 4;
+  border: 1px solid red;
+}

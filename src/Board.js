@@ -51,8 +51,9 @@ class Board extends Component{
       .selectAll("div")
       .data(this.state.arr)
       .enter().append("div")
-      .style("background-color",
-        d => d == 1 ? "rgb(51, 153, 255)" : d == 2 ? "rgb(0, 64, 128)" : "rgb(0,26,0)")
+      .classed("newCell",d => d == 1)
+      .classed("oldCell", d => d == 2)
+      .classed("deadCell", d => !d)
       .on("click", (d,i) =>  self.clickHandler(d,i))
     };
 
