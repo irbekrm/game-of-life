@@ -51,17 +51,16 @@ class Game extends Component {
       <div id="container">
         <div id="header">game of life</div>
         <div id="controls">
+        <div id="innerControls">
           <Button onClick={()=>this.setPause(this.state.pause)}
           text={this.state.pause?"start":"pause"} />
           <Button onClick={this.clear} text="clear" />
           <Button onClick={this.reset} text="reset" />
         </div>
+        </div>
         <div id="middle">
         <div id="left">
-        <div id="text">
           <Text />
-
-        </div>
         </div>
         <Board liveCells={cellGenerator()} ref="board" id="board" newGeneration={this.newGeneration}/>
         <div id="speed">
@@ -71,9 +70,11 @@ class Game extends Component {
         <ExampleCell id="new" text="newly created cell" />
         </div>
           <div id="speedLabel">set the speed: </div>
+          <div id="speedButtons">
           <Button onClick={()=>this.changeSpeed(1000)} text="slow" />
           <Button onClick={()=>this.changeSpeed(500)} text="medium" />
           <Button onClick={()=>this.changeSpeed(100)} text="fast" />
+          </div>
         </div>
         </div>
         <div id="generation">

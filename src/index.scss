@@ -8,13 +8,13 @@ $cellSize: $width / 150;
 .border {
   border: 1px solid darken($green, 10%);
 }
-#container{
+
+#container {
   width: $width;
   height: $height;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: 6% 10% 8% 60% 5% 11%;
+  grid-template-columns: 5% 90% 5%;
   color: $green;
   font-size: $width / 80;
 }
@@ -61,34 +61,112 @@ $cellSize: $width / 150;
   align-items: center;
 }
 #header {
+  display: flex;
+  justify-content: center;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
   font-size: $width / 35;
 }
 .buttons {
-  width: $width / 150 * 80;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   div {
     @extend .border;
-    border-radius: $width/100;
-    padding: $width/120;
+    border-radius: $width / 100;
+    padding: $width / 180;
+    display: flex;
+    align-items: center;
     cursor: pointer;
   }
 }
-#controls{
+#speedButtons {
   @extend .buttons;
+  flex-direction: column;
+  div {
+    width: $width / 20;
+    justify-content: center;
+    align-self: center;
+  }
+}
+#controls{
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  display: grid;
+  grid-template-columns: 25% 55% 15%;
+  grid-template-rows: 15% 70% 15%;
+}
+#innerControls {
+  @extend .buttons;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  display: flex;
+}
+#middle {
+  grid-row-start: 4;
+  grid-row-end: 5;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+#generation {
+  grid-row-start: 5;
+  grid-row-end: 6;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 25% 75%;
+}
+#innerGeneration {
+  grid-column-start: 2;
+  grid-row-start: 2;
 }
 #middle {
   display: grid;
-  grid-template-columns: 4% 23% 55% 10% 5%;
-  grid-template-rows: 1;
-  border: 1px solid red;
+  grid-template-columns: 25% 3% 55% 2% 15%;
 }
 #left {
-  grid-column-start: 2;
-  border: 1px solid red;
+  grid-column-start: 1;
   font-size: $width / 90;
 }
 #speed {
-  grid-column-start: 4;
-  border: 1px solid red;
+  grid-column-start: 5;
+  grid-column-end: 6;
+  display: grid;
+  grid-template-rows: 5% 25% 8% 7% 2% 35% 15%;
+  grid-template-columns: 100%;
+}
+#cellTypes {
+  grid-row-start: 2;
+  grid-row-end: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+#speedLabel {
+  grid-row-start: 4;
+  grid-row-end: 5;
+  display: flex;
+  justify-content: center;
+}
+#speedButtons {
+  grid-row-start:6;
+  grid-row-end:7;
+}
+#text {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.innerHeader {
+  text-align: center;
+  font-size: $width / 80;
+}
+#link {
+  text-align: center;
 }
