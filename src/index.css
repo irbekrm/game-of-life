@@ -4,6 +4,9 @@
 .buttonBorder, .exampleCell, #old, #new, #dead, .buttons div, #speedButtons div, #innerControls div {
   border: 1px solid #004d00; }
 
+.shadow {
+  box-shadow: 2px 2px #001a00; }
+
 #container {
   width: 100vw;
   height: 100vh;

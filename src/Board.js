@@ -10,7 +10,7 @@ class Board extends Component{
   };
   componentDidMount(){
     this.generate();
-    this.setTimer(1000);
+    this.setTimer(this.props.speed);
   }
 
   componentDidUpdate() {

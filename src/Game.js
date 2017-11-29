@@ -13,7 +13,7 @@ class Game extends Component {
   };
 
   componentDidMount(){
-    this.speed = 1000;
+    this.currentSpeed = 1000;
   }
 
   stop = _ => {
@@ -22,7 +22,7 @@ class Game extends Component {
   }
 
   start = _ => {
-    this.refs.board.setTimer(this.speed);
+    this.refs.board.setTimer(this.currentSpeed);
     this.setState({pause: false});
   }
 
@@ -37,16 +37,19 @@ class Game extends Component {
 
   reset = _ => {
     this.setState({generation: 0, pause: false});
+    this.currentSpeed = 1000;
 
     this.refs.board.reset(cellGenerator());
   }
 
-  changeSpeed = newSpeed => {
-    this.speed = newSpeed;
-    this.refs.board.resetSpeed(newSpeed);
+  changeSpeed = (newSpeed,x) => {
+    this.currentSpeed = newSpeed;
+    !this.state.pause && this.refs.board.resetSpeed(newSpeed);
   }
 
   render(){
+    let speeds = {"slow": 1000, "medium": 500, "fast": 100},
+      currentSpeed = this.currentSpeed;
     return (
       <div id="container">
         <div id="top">
@@ -64,7 +67,8 @@ class Game extends Component {
         <div id="left">
           <Text />
         </div>
-        <Board liveCells={cellGenerator()} ref="board" id="board" newGeneration={this.newGeneration}/>
+        <Board liveCells={cellGenerator()} ref="board" id="board"
+        newGeneration={this.newGeneration} speed={this.currentSpeed}/>
         <div id="speed">
         <div id="cellTypes">
         <ExampleCell id="dead" text="dead cell" />
@@ -73,9 +77,9 @@ class Game extends Component {
         </div>
           <div id="speedLabel">set the speed: </div>
           <div id="speedButtons">
-          <Button onClick={()=>this.changeSpeed(1000)} text="slow" />
-          <Button onClick={()=>this.changeSpeed(500)} text="medium" />
-          <Button onClick={()=>this.changeSpeed(100)} text="fast" />
+            {Object.keys(speeds).map(e => (
+            <Button onClick={(x) => this.changeSpeed(speeds[e],x)} text={e}
+            selectedButton={speeds[e]==currentSpeed} /> ))}
           </div>
         </div>
         </div>

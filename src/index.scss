@@ -11,6 +11,9 @@ $cellSize: $width / 150;
 .buttonBorder {
   border: 1px solid lighten($green, 10%);
 }
+.shadow {
+  box-shadow: 2px 2px $green;
+}
 
 #container {
   width: $width;
@@ -89,6 +92,8 @@ $cellSize: $width / 150;
     align-items: center;
     cursor: pointer;
   }
+}
+.selected {
 }
 #speedButtons {
   @extend .buttons;
