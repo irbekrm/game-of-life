@@ -1,5 +1,8 @@
-.border, #wrapper div, .exampleCell, #old, #new, #dead, .buttons div, #speedButtons div, #innerControls div {
+.border, #wrapper div {
   border: 1px solid black; }
+
+.buttonBorder, .exampleCell, #old, #new, #dead, .buttons div, #speedButtons div, #innerControls div {
+  border: 1px solid #004d00; }
 
 #container {
   width: 100vw;
@@ -7,8 +10,9 @@
   display: grid;
   grid-template-rows: 6% 18% 60% 5% 11%;
   grid-template-columns: 5% 90% 5%;
-  color: #001a00;
-  font-size: 1.25vw; }
+  color: #006700;
+  font-size: 1.25vw;
+  background-color: black; }
 
 #wrapper {
   display: grid;

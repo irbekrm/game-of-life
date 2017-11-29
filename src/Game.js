@@ -32,11 +32,11 @@ class Game extends Component {
 
   newGeneration = _ => this.setState(prevState => ({generation: prevState.generation +=1}));
 
-  clear = _ => {this.setState({generation: 0});
+  clear = _ => {this.setState({generation: 0, pause: true});
     this.refs.board.clear()};
 
   reset = _ => {
-    this.setState({generation: 0});
+    this.setState({generation: 0, pause: false});
 
     this.refs.board.reset(cellGenerator());
   }
