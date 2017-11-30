@@ -53,38 +53,38 @@ class Game extends Component {
     return (
       <div id="container">
         <div id="top">
-        <div id="header">game of life</div>
-        <div id="controls">
-        <div id="innerControls">
-          <Button onClick={()=>this.setPause(this.state.pause)}
-          text={this.state.pause?"start":"pause"} />
-          <Button onClick={this.clear} text="clear" />
-          <Button onClick={this.reset} text="reset" />
-        </div>
-        </div>
-        </div>
-        <div id="middle">
-        <div id="left">
-          <Text />
-        </div>
-        <Board liveCells={cellGenerator()} ref="board" id="board"
-        newGeneration={this.newGeneration} speed={this.currentSpeed}/>
-        <div id="speed">
-        <div id="cellTypes">
-        <ExampleCell id="dead" text="dead cell" />
-        <ExampleCell id="old" text="surviving cell" />
-        <ExampleCell id="new" text="newly created cell" />
-        </div>
-          <div id="speedLabel">set the speed: </div>
-          <div id="speedButtons">
-            {Object.keys(speeds).map(e => (
-            <Button onClick={(x) => this.changeSpeed(speeds[e],x)} text={e}
-            selectedButton={speeds[e]==currentSpeed} /> ))}
+          <div id="header">game of life</div>
+          <div id="controls">
+            <div id="generation">
+              <Display generation={this.state.generation} />
+            </div>
           </div>
         </div>
+        <div id="middle">
+          <div id="left">
+            <div id="innerControls">
+              <Button onClick={()=>this.setPause(this.state.pause)}
+              text={this.state.pause?"start":"pause"} />
+              <Button onClick={this.clear} text="clear" />
+              <Button onClick={this.reset} text="reset" />
+            </div>
+              <div id="speed">
+              <span id="speedLabel">set the speed: </span>
+                {Object.keys(speeds).map(e => (
+                <Button onClick={(x) => this.changeSpeed(speeds[e],x)} text={e}
+                selectedButton={speeds[e]==currentSpeed} /> ))}
+            </div>
+          </div>
+          <Board liveCells={cellGenerator()} ref="board" id="board"
+          newGeneration={this.newGeneration} speed={this.currentSpeed}/>
+          <Text />
         </div>
-        <div id="generation">
-          <Display generation={this.state.generation} />
+        <div id="cellTypes">
+          <div>
+          <ExampleCell id="dead" text="dead cell" />
+          <ExampleCell id="old" text="surviving cell" />
+          <ExampleCell id="new" text="newly created cell" />
+          </div>
         </div>
       </div>
     )

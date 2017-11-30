@@ -14,27 +14,31 @@ $cellSize: $width / 150;
 .shadow {
   box-shadow: 2px 2px $green;
 }
-
+body {
+  background-color: darken($green, 15%);
+}
+// * {
+//   border: 1px solid white;
+// }
 #container {
   width: $width;
+  min-width: 750px;
   height: $height;
+  min-height: 300px;
   display: grid;
-  grid-template-rows: 6% 18% 60% 5% 11%;
-  grid-template-columns: 5% 90% 5%;
+  grid-template-rows: 6% 12% 64% 11% 5%;
+  grid-template-columns: 3% 92% 5%;
   color: lighten($green,15%);
   font-size: $width / 80;
-  background-color: darken($green, 15%)
 }
 #wrapper{
+  grid-column-start: 3;
   display: grid;
-  grid-template-columns: repeat(80, $cellSize);
-  grid-template-rows: repeat(50, $cellSize);
+  grid-template-columns: repeat(80, 1fr);
+  grid-template-rows: repeat(50, 1fr);
     div {
       @extend .border;
     }
-}
-#middle {
-  display: flex;
 }
 
 .oldCell {
@@ -69,17 +73,10 @@ $cellSize: $width / 150;
 }
 #header {
   font-size: $width / 30;
-  grid-row-start: 1;
-  grid-column-start: 2;
-  display: flex;
-  justify-content: center;
 }
 #top {
   grid-row-start: 2;
   grid-column-start: 2;
-  display: grid;
-  grid-template-columns: 10% 45% 30% 15%;
-  grid-template-rows: 50% 50%;
 }
 .buttons {
   display: flex;
@@ -91,6 +88,7 @@ $cellSize: $width / 150;
     display: flex;
     align-items: center;
     cursor: pointer;
+    align-self: stretch;
   }
 }
 .selected {
@@ -108,54 +106,33 @@ $cellSize: $width / 150;
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 2;
-  display: grid;
-  grid-template-rows: 25% 65% 10%;
 }
 #innerControls {
   @extend .buttons;
-  grid-row-start: 2;
   display: flex;
+  flex-direction: column;
+  grid-row-start: 2;
+    div {
+      display: flex;
+      justify-content: center;
+    }
 }
 #middle {
+  min-height: 240px;
   grid-row-start: 3;
   grid-row-end: 4;
   grid-column-start: 2;
   grid-column-end: 3;
-}
-#generation {
-  grid-row-start: 4;
-  grid-row-end: 5;
-  grid-column-start: 2;
-  grid-column-end: 3;
   display: grid;
-  grid-template-columns: 40% 60%;
-  grid-template-rows: 25% 75%;
+  grid-template-columns: 15% 3% 55% 2% 25%;
+  grid-template-rows: 100%;
 }
-#innerGeneration {
-  grid-column-start: 2;
-  grid-row-start: 2;
-}
-#middle {
-  display: grid;
-  grid-template-columns: 25% 3% 55% 2% 15%;
-}
+
 #left {
   grid-column-start: 1;
   font-size: $width / 90;
-}
-#speed {
-  grid-column-start: 5;
-  grid-column-end: 6;
   display: grid;
-  grid-template-rows: 5% 25% 8% 7% 2% 35% 15%;
-  grid-template-columns: 100%;
-}
-#cellTypes {
-  grid-row-start: 2;
-  grid-row-end: 3;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  grid-template-rows: 8% 27% 12% 35%  8%;
 }
 #speedLabel {
   grid-row-start: 4;
@@ -172,6 +149,7 @@ $cellSize: $width / 150;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  grid-column-start: 5;
 }
 .innerHeader {
   text-align: center;
@@ -179,4 +157,27 @@ $cellSize: $width / 150;
 }
 #link {
   text-align: center;
+}
+#speed {
+  grid-row-start: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  @extend .buttons;
+    div {
+      justify-content: center;
+      display: flex;
+    }
+}
+#cellTypes {
+  display: grid;
+  grid-template-columns: 3fr 8fr 5fr;
+  grid-row-start: 4;
+  grid-row-end:5;
+  grid-column-start: 2;
+  div {
+    grid-column-start: 2;
+    display: flex;
+    justify-content: space-between;
+  }
 }
