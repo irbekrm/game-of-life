@@ -54,10 +54,8 @@ class Game extends Component {
       <div id="container">
         <div id="top">
           <div id="header">game of life</div>
-          <div id="controls">
-            <div id="generation">
-              <Display generation={this.state.generation} />
-            </div>
+          <div id="generation">
+            <Display generation={this.state.generation} />
           </div>
         </div>
         <div id="middle">

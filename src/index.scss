@@ -1,6 +1,7 @@
 $width: 100vw;
 $height: 100vh;
 $green: rgb(0, 26, 0);
+$lightgreen: rgb(92, 134, 92);
 $blue: rgb(0,0,102);
 $cellSize: $width / 150;
 
@@ -9,7 +10,7 @@ $cellSize: $width / 150;
   border: 1px solid darken($green, 10%);
 }
 .buttonBorder {
-  border: 1px solid lighten($green, 10%);
+  border: 1px solid darken($lightgreen, 15%);
 }
 .shadow {
   box-shadow: 2px 2px $green;
@@ -17,18 +18,16 @@ $cellSize: $width / 150;
 body {
   background-color: darken($green, 15%);
 }
-// * {
-//   border: 1px solid white;
-// }
+
 #container {
   width: $width;
   min-width: 750px;
   height: $height;
   min-height: 300px;
   display: grid;
-  grid-template-rows: 6% 12% 64% 11% 5%;
+  grid-template-rows: 3% 14% 2% 66% 9% 6%;
   grid-template-columns: 3% 92% 5%;
-  color: lighten($green,15%);
+  color: $lightgreen;
   font-size: $width / 80;
 }
 #wrapper{
@@ -72,41 +71,59 @@ body {
   align-items: center;
 }
 #header {
-  font-size: $width / 30;
+  font-size: $width / 20;
+  grid-column-start: 2;
+  grid-column-end: 5;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+#generation {
+  grid-column-start:3;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  display: flex;
+  align-items: flex-end;
 }
 #top {
   grid-row-start: 2;
   grid-column-start: 2;
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr 2fr 1fr 4fr;
+  grid-template-rows: 5fr 2fr;
 }
 .buttons {
   display: flex;
   justify-content: space-around;
-  div {
-    @extend .buttonBorder;
-    border-radius: $width / 100;
-    padding: $width / 180;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    align-self: stretch;
-  }
 }
-.selected {
+button {
+  border-radius: $width / 100;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 4px darken($lightgreen, 10%);
+  background: $green;
+  color: $lightgreen;
+  border: none;
+}
+
+button:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px darken($lightgreen, 15%);
+  color: darken($lightgreen, 10%);
+}
+a {
+  color: inherit;
 }
 #speedButtons {
   @extend .buttons;
   flex-direction: column;
-  div {
+  button {
     width: $width / 20;
     justify-content: center;
     align-self: center;
   }
 }
-#controls{
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 2;
-}
+
 #innerControls {
   @extend .buttons;
   display: flex;
@@ -115,16 +132,17 @@ body {
     div {
       display: flex;
       justify-content: center;
+      box-shadow: 0 9px white;
     }
 }
 #middle {
   min-height: 240px;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
   grid-column-start: 2;
   grid-column-end: 3;
   display: grid;
-  grid-template-columns: 15% 3% 55% 2% 25%;
+  grid-template-columns: 15% 3% 58% 2% 22%;
   grid-template-rows: 100%;
 }
 
@@ -132,7 +150,7 @@ body {
   grid-column-start: 1;
   font-size: $width / 90;
   display: grid;
-  grid-template-rows: 8% 27% 12% 35%  8%;
+  grid-template-rows: 8% 30% 9% 37%  6%;
 }
 #speedLabel {
   grid-row-start: 4;
@@ -145,6 +163,7 @@ body {
   grid-row-end:7;
 }
 #text {
+  color: darken($lightgreen, 10%);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -172,8 +191,8 @@ body {
 #cellTypes {
   display: grid;
   grid-template-columns: 3fr 8fr 5fr;
-  grid-row-start: 4;
-  grid-row-end:5;
+  grid-row-start: 5;
+  grid-row-end:6;
   grid-column-start: 2;
   div {
     grid-column-start: 2;
